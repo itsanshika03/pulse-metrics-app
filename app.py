@@ -167,8 +167,8 @@ if nav == "📊 Executive Overview":
     avg_steps = int(df['TotalSteps'].mean())
     avg_calories = int(df['Calories'].mean())
     avg_sedentary = int(df['SedentaryMinutes'].mean())
-    avg_sleep = int(df['TotalMinutesAsleep'].mean()) if 'TotalMinutesAsleep' in df.columns else 0
-
+    mean_sleep = df['TotalMinutesAsleep'].mean() if ('TotalMinutesAsleep' in df.columns and not df['TotalMinutesAsleep'].dropna().empty) else 0
+    avg_sleep = int(mean_sleep) if pd.notna(mean_sleep) else 0
     col1, col2, col3, col4, col5 = st.columns(5)
     
     with col1:
